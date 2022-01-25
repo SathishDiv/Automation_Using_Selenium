@@ -1,0 +1,76 @@
+Feature: SmartBearAutomation
+
+Background:
+Given Open the browser
+And Goto to the application "<url>"
+@regression
+Scenario Outline: Validation for SmartBear using Test data
+
+And Enter username "<username>"
+And Enter password "<password>"
+And Click login
+Then Verify login is success
+And close the browser
+Examples:
+|username|password|
+|Tester|test|
+@regression
+Scenario Outline: Navigate to order
+
+When Enter username "<username>"
+When Enter password "<password>"
+When Click login
+Then Click on order
+And Close the browser
+Examples: 
+|username|password|
+|Tester|test|
+
+@regression
+Scenario Outline: Process order validation
+
+When Enter username "<username>"
+When Enter password "<password>"
+When Click login
+When Click on order
+When Enter product information "<product>"
+When Enter Address information "<Cxname>" , "<street>" , "<city>" , "<zip>"
+When Enter payment information "<cardnumber>" , "<Expirydate>"
+Then Process the order
+And Close the browser
+Examples:
+|username|password|product|Cxname|street|city|zip|cardnumber|Expirydate|
+|Tester|test|FamilyAlbum|sathish|MarketStreet|sydney|2000|234536547654|10/21|
+@sanity
+
+Scenario Outline: Validation of first drop down
+
+Given Open the browser
+When Navigate to tools Qa application "<url>"
+When Select the value from first drop down <"firstdropdown>"
+Then Close the browser
+|url|firstdropdown|
+|https://demoqa.com/select-menu|A root Option|
+
+Scenario Outline: Validation of second drop down
+
+Given Open the browser
+When Navigate to tools Qa application "<url>" 
+When Select the value from second drop down "<seconddropdown>"
+Then Close the browser
+|url|seconddropdown|
+|https://demoqa.com/select-menu|Mr.|
+@datatable
+Scenario: Login using datatables parameterisation
+Given Open the browser
+When Navigate to the application
+|http://secure.smartbearsoftware.com/samples/testcomplete11/WebOrders/login.aspx|
+When Enter the username
+|Tester|
+When Enter the password
+|test|
+And Click login
+
+
+
+
